@@ -16,64 +16,60 @@ namespace Parcial2
             Bike bikeWithChassis = new  Bike();
             Assert.NotNull(bikeWithChassis);
 
-            Bike motoWithoutChassis = new Bike();
-            motoWithoutChassis.parts.Remove(motoWithoutChassis.parts.Find(p => p is Chassis));
-            Assert.NotNull(motoWithoutChassis);
+            Bike bikeWithoutChassis = new Bike();
+            bikeWithoutChassis.parts.Remove(bikeWithoutChassis.parts.Find(p => p is Chassis));
+            Assert.NotNull(bikeWithoutChassis);
         }
 
         [Test]
         public void BikesCanBeUsed()
         {
-            // Moto completa
-            var motoComplete = new Bike();
-            motoComplete.AddPart(new Chassis());
-            motoComplete.AddPart(new frontWheel());
-            motoComplete.AddPart(new backWheel());
-            motoComplete.AddPart(new Engine());
-            motoComplete.AddPart(new Muffler());
-            Assert.IsTrue(motoComplete.CanBeUsedInRace(), "La moto completa debe ser válida");
+            var bikeComplete = new Bike();
+            bikeComplete.AddPart(new Chassis());
+            bikeComplete.AddPart(new frontWheel());
+            bikeComplete.AddPart(new backWheel());
+            bikeComplete.AddPart(new Engine());
+            bikeComplete.AddPart(new Muffler());
+            Assert.IsTrue(bikeComplete.CanBeUsedInRace());
 
-            // Moto sin motor
-            var motoWithoutEngine = new Bike();
-            motoWithoutEngine.AddPart(new Chassis());
-            motoWithoutEngine.AddPart(new frontWheel());
-            motoWithoutEngine.AddPart(new backWheel());
-            motoWithoutEngine.AddPart(new Muffler());
-            Assert.IsFalse(motoWithoutEngine.CanBeUsedInRace(), "La moto sin motor no debe ser válida");
+            var bikeWithoutEngine = new Bike();
+            bikeWithoutEngine.AddPart(new Chassis());
+            bikeWithoutEngine.AddPart(new frontWheel());
+            bikeWithoutEngine.AddPart(new backWheel());
+            bikeWithoutEngine.AddPart(new Muffler());
+            Assert.IsFalse(bikeWithoutEngine.CanBeUsedInRace());
 
-            // Moto sin llanta trasera
-            var motoWithoutBackWheel = new Bike();
-            motoWithoutBackWheel.AddPart(new Chassis());
-            motoWithoutBackWheel.AddPart(new frontWheel());
-            motoWithoutBackWheel.AddPart(new Engine());
-            motoWithoutBackWheel.AddPart(new Muffler());
-            Assert.IsFalse(motoWithoutBackWheel.CanBeUsedInRace(), "La moto sin llanta trasera no debe ser válida");
+            var bikeWithoutBackWheel = new Bike();
+            bikeWithoutBackWheel.AddPart(new Chassis());
+            bikeWithoutBackWheel.AddPart(new frontWheel());
+            bikeWithoutBackWheel.AddPart(new Engine());
+            bikeWithoutBackWheel.AddPart(new Muffler());
+            Assert.IsFalse(bikeWithoutBackWheel.CanBeUsedInRace());
 
-            // Moto sin mofle
-            var motoWithoutMuffler = new Bike();
-            motoWithoutMuffler.AddPart(new Chassis());
-            motoWithoutMuffler.AddPart(new frontWheel());
-            motoWithoutMuffler.AddPart(new backWheel());
-            motoWithoutMuffler.AddPart(new Engine());
-            Assert.IsFalse(motoWithoutMuffler.CanBeUsedInRace(), "La moto sin mofle no debe ser válida");
+            var bikeWithoutMuffler = new Bike();
+            bikeWithoutMuffler.AddPart(new Chassis());
+            bikeWithoutMuffler.AddPart(new frontWheel());
+            bikeWithoutMuffler.AddPart(new backWheel());
+            bikeWithoutMuffler.AddPart(new Engine());
+            Assert.IsFalse(bikeWithoutMuffler.CanBeUsedInRace());
         }
 
         [Test]
         public void PartCanBeAdded()
         {
-            Bike motoWithoutFrontWheel = new Bike();
-            motoWithoutFrontWheel.AddPart(new backWheel());
-            Assert.IsTrue(CanAddPart(motoWithoutFrontWheel, new frontWheel()));
+            Bike bikeWithoutFrontWheel = new Bike();
+            bikeWithoutFrontWheel.AddPart(new backWheel());
+            Assert.IsTrue(CanAddPart(bikeWithoutFrontWheel, new frontWheel()));
 
-            Bike motoWithBackWheel = new Bike();
-            motoWithBackWheel.AddPart(new backWheel());
-            Assert.IsTrue(CanAddPart(motoWithBackWheel, new backWheel()));
+            Bike bikeWithBackWheel = new Bike();
+            bikeWithBackWheel.AddPart(new backWheel());
+            Assert.IsTrue(CanAddPart(bikeWithBackWheel, new backWheel()));
 
-            Bike motoWithoutMuffler = new Bike();
-            Assert.IsTrue(CanAddPart(motoWithoutMuffler, new Muffler()));
+            Bike bikeWithoutMuffler = new Bike();
+            Assert.IsTrue(CanAddPart(bikeWithoutMuffler, new Muffler()));
 
-            Bike motoWithChassis = new Bike();
-            Assert.IsFalse(CanAddPart(motoWithChassis, new Chassis()));
+            Bike bikeWithChassis = new Bike();
+            Assert.IsFalse(CanAddPart(bikeWithChassis, new Chassis()));
         }
 
         private bool CanAddPart(Bike moto, BikePart part)
